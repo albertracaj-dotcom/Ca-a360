@@ -1,88 +1,58 @@
 # Caça 360
 
-Aplicació web de formació cinegètica. Primera versió centrada en la preparació teòrica de les llicències d'armes D i E a Catalunya.
+Aplicació web progressiva (PWA) en català per preparar la prova teòrica de les llicències d'armes D i E.
 
-## Estat del projecte
+## Contingut actual
+- Temari organitzat segons els set temes publicats per la Guàrdia Civil.
+- Accés directe als qüestionaris oficials i als fulls de respostes oficials de cada tema.
+- 35 preguntes originals de Caça 360, identificades com a contingut propi.
+- Pràctica general i pràctica específica per tema.
+- Simulacre de 20 preguntes, 20 minuts i llindar oficial de 16 respostes correctes.
+- Correcció amb explicacions en mode pràctica.
+- Recompte local de proves completades.
+- Pàgina de fonts oficials i normativa.
+- Manifest PWA, icones i cache bàsica del shell per a ús sense connexió després d'haver visitat l'app.
 
-**Prototip inicial (0.1.0)**
+## Precisió i fonts
+Programa oficial: [Guàrdia Civil — Programa de coneixements de la prova teòrica D, E i AEM](https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/).
 
-Inclou:
-- Inici i navegació.
-- Presentació dels set blocs de temari (títols pendents de validar amb el programa oficial vigent).
-- Mode pràctica amb preguntes fictícies de demostració.
-- Simulacre de demostració de 20 preguntes.
-- Temporitzador, puntuació i revisió de respostes.
-- Esquema SQL inicial per a Supabase.
+La Guàrdia Civil indica 400 preguntes al banc oficial, 20 preguntes per prova, 20 minuts i un mínim de 16 encerts. La pàgina oficial publica també un repartiment temàtic que suma 24 preguntes, malgrat que l'examen consta de 20; Caça 360 no aplica aquest repartiment fins que es pugui aclarir.
 
-Les preguntes incloses són exclusivament demostratives: **no són preguntes oficials ni substitueixen el programa o les proves de la Guàrdia Civil**. No incorporar el banc oficial fins a verificar-ne la versió, la procedència i les condicions de reutilització.
+**Les 35 preguntes pròpies de l'app no són preguntes oficials.** Els qüestionaris oficials i les seves respostes s'obren des dels enllaços publicats per la Guàrdia Civil. Les normes i els requisits poden canviar: comprova sempre el text consolidat i la data de vigència.
 
-## Requisits
+## Tecnologia
+- Next.js 15, React 19 i TypeScript
+- PWA amb service worker
+- GitHub Actions per executar ESLint i la compilació
+- Progrés local al navegador (sense compte ni sincronització)
 
-- Node.js 20.9 o superior
-- npm
-
-## Instal·lació
+## Desenvolupament local
+Requereix Node.js 20.9 o superior.
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-Obre http://localhost:3000
+Obre http://localhost:3000.
 
-## Construcció
-
+Per validar:
 ```bash
+npm run lint
 npm run build
-npm start
 ```
 
-## Estructura
+## Pendents abans d'una publicació real
+- Validació experta i jurídica de totes les fitxes i preguntes originals.
+- Completar els materials d'estudi desenvolupats per tema.
+- Progrés detallat i sincronització d'usuari amb backend.
+- Panell d'administració per revisar continguts i versions normatives.
+- Revisió d'accessibilitat, proves en mòbil i dispositius reals.
+- Desplegament HTTPS i verificació final d'instal·lació PWA.
+- Política de privacitat, termes d'ús i sistema de subscripció si s'activa el model freemium.
 
-```text
-src/
-  app/
-    globals.css
-    layout.tsx
-    page.tsx
-  components/
-    AppShell.tsx
-    Quiz.tsx
-  data/
-    demo-questions.ts
-    topics.ts
-  lib/
-    quiz.ts
-supabase/
-  schema.sql
-```
-
-## Properes passes
-
-1. Validar i documentar els set temes exactes del programa oficial.
-2. Revisar el banc oficial, la seva vigència i els drets de reutilització.
-3. Connectar Supabase Auth i PostgreSQL.
-4. Crear panell d'administració i importació CSV.
-5. Afegir persistència d'historial i progrés.
-6. Implementar simulacre amb distribució oficial contrastada.
-7. Afegir subscripcions quan el producte estigui validat.
-
-## Principis
-
-- No exposar respostes correctes abans de lliurar el test en producció.
-- Guardar font, versió i data de revisió de cada pregunta.
-- Distingir preguntes oficials, pròpies i pendents de revisió.
-- No mostrar una norma com a vigent sense comprovar-ne la data d'efectes.
-
-
-## Instal·lació al mòbil (PWA)
-
-El projecte inclou manifest, icones, registre del service worker i una pàgina de reserva quan no hi ha connexió. Després de desplegar-lo en un domini amb **HTTPS**:
-
-- **Android (Chrome):** obre la web i prem «Instal·la l'app» quan aparegui.
-- **iPhone/iPad (Safari):** prem «Com instal·lar» i després Comparteix → «Afegir a la pantalla d'inici».
-
-Els navegadors exigeixen una acció explícita de l'usuari; una web no pot instal·lar-se silenciosament. El mode sense connexió d'aquesta primera versió només mostra una pàgina informativa: els tests i el temari encara necessiten connexió.
-
-Per publicar-la cal connectar el repositori a un servei de desplegament (per exemple, Vercel) i configurar el domini HTTPS. Encara no s'ha fet cap desplegament.
+## Principis editorials
+- No presentar preguntes pròpies com a oficials.
+- Conservar font, tema i data de revisió de cada contingut.
+- Revisar la vigència de les referències normatives.
+- No oferir instruccions pràctiques de manipulació com a substitut de la formació presencial autoritzada.
