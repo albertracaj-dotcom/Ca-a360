@@ -14,7 +14,10 @@ function shuffled<T>(items: T[]) {
 
 export default function Quiz({ mode, onComplete, topicId }: Props) {
   const count = mode === "exam" ? EXAM_CONFIG.questionCount : 10;
-  const questions = useMemo(() => {\n    const pool = topicId ? questionBank.filter(q => q.topicId === topicId) : questionBank;\n    return shuffled(pool).slice(0, Math.min(count, pool.length));\n  }, [count, topicId]);
+  const questions = useMemo(() => {
+    const pool = topicId ? questionBank.filter(q => q.topicId === topicId) : questionBank;
+    return shuffled(pool).slice(0, Math.min(count, pool.length));
+  }, [count, topicId]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [status, setStatus] = useState<Status>("active");
