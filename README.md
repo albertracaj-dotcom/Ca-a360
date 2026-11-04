@@ -9,8 +9,9 @@ Aplicació web progressiva (PWA) en català per preparar la prova teòrica de le
 - Pràctica general i pràctica específica per tema.
 - Simulacre de 20 preguntes, 20 minuts i llindar oficial de 16 respostes correctes.
 - Correcció amb explicacions en mode pràctica.
-- Recompte local de proves completades.
+- Historial local de fins a 20 proves, mitjana d'encerts i recompte total.
 - Pàgina de fonts oficials i normativa.
+- Pàgines inicials de privacitat i condicions d'ús.
 - Manifest PWA, icones i cache bàsica del shell per a ús sense connexió després d'haver visitat l'app.
 
 ## Precisió i fonts
@@ -21,13 +22,15 @@ La Guàrdia Civil indica 400 preguntes al banc oficial, 20 preguntes per prova, 
 **Les 35 preguntes pròpies de l'app no són preguntes oficials.** Els qüestionaris oficials i les seves respostes s'obren des dels enllaços publicats per la Guàrdia Civil. Les normes i els requisits poden canviar: comprova sempre el text consolidat i la data de vigència.
 
 ## Tecnologia
-- Next.js 15, React 19 i TypeScript
+- Next.js 15.5.28, React 19.0.6 i TypeScript
+- Node.js 22 per a CI i auditoria de dependències de producció
+- PostCSS 8.5.32 forçat via override per corregir una dependència transitiva vulnerable
 - PWA amb service worker
 - GitHub Actions per executar ESLint i la compilació
 - Progrés local al navegador (sense compte ni sincronització)
 
 ## Desenvolupament local
-Requereix Node.js 20.9 o superior.
+Requereix Node.js 22.
 
 ```bash
 npm install
@@ -49,7 +52,8 @@ npm run build
 - Panell d'administració per revisar continguts i versions normatives.
 - Revisió d'accessibilitat, proves en mòbil i dispositius reals.
 - Desplegament HTTPS i verificació final d'instal·lació PWA.
-- Política de privacitat, termes d'ús i sistema de subscripció si s'activa el model freemium.
+- Revisió jurídica de les pàgines inicials de privacitat i condicions d'ús.
+- Sistema de subscripció si s'activa el model freemium.
 
 ## Principis editorials
 - No presentar preguntes pròpies com a oficials.
