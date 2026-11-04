@@ -30,3 +30,11 @@
 .button-secondary{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--forest);padding:12px 14px;font-size:11px;font-weight:700}
 .button-secondary:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:600px){.quiz-actions{gap:5px}.button-secondary{padding:10px 9px;font-size:10px}}
+
+.results-list{background:var(--paper);border:1px solid var(--line);padding:0 18px}
+.results-row{display:grid;grid-template-columns:1fr auto auto;gap:18px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line);font-size:11px}
+.results-row:last-child{border-bottom:0}
+.results-row b{color:var(--forest)}
+.results-row span{color:var(--muted)}
+.results-row small{color:#92998f}
+@media(max-width:600px){.results-row{grid-template-columns:1fr auto;gap:5px}.results-row small{grid-column:1/-1}}
