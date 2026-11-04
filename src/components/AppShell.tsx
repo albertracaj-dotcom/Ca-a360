@@ -7,7 +7,8 @@ import {
   X
 } from "lucide-react";
 import Quiz from "./Quiz";
-import { topics } from "@/data/topics";\nimport { lessonContent } from "@/data/lesson-content";
+import { topics } from "@/data/topics";
+import { lessonContent } from "@/data/lesson-content";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources";
 
@@ -15,7 +16,16 @@ export default function AppShell() {
   const [view, setView] = useState<View>("home");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState(1);
-  const [completed, setCompleted] = useState(0);\n  const [practiceTopic, setPracticeTopic] = useState<number | undefined>(undefined);\n\n  useEffect(() => {\n    const saved = window.localStorage.getItem("caca360-completed");\n    if (saved) setCompleted(Number(saved) || 0);\n  }, []);\n  useEffect(() => {\n    window.localStorage.setItem("caca360-completed", String(completed));\n  }, [completed]);
+  const [completed, setCompleted] = useState(0);
+  const [practiceTopic, setPracticeTopic] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("caca360-completed");
+    if (saved) setCompleted(Number(saved) || 0);
+  }, []);
+  useEffect(() => {
+    window.localStorage.setItem("caca360-completed", String(completed));
+  }, [completed]);
 
   const activeTopic = useMemo(() => topics.find(t => t.id === selectedTopic) ?? topics[0], [selectedTopic]);
 
@@ -33,7 +43,8 @@ export default function AppShell() {
         </button>
         <nav className="desktop-nav">
           <button className={view === "home" ? "nav-active" : ""} onClick={() => navigate("home")}>Inici</button>
-          <button className={view === "topics" ? "nav-active" : ""} onClick={() => navigate("topics")}>Temari</button>\n          <button className={view === "sources" ? "nav-active" : ""} onClick={() => navigate("sources")}>Fonts oficials</button>
+          <button className={view === "topics" ? "nav-active" : ""} onClick={() => navigate("topics")}>Temari</button>
+          <button className={view === "sources" ? "nav-active" : ""} onClick={() => navigate("sources")}>Fonts oficials</button>
           <button onClick={() => { setPracticeTopic(undefined); navigate("practice"); }}>Practicar</button>
           <button onClick={() => navigate("exam")}>Simulacre</button>
         </nav>
@@ -45,7 +56,8 @@ export default function AppShell() {
 
       {mobileMenu && <nav className="mobile-nav">
         <button onClick={() => navigate("home")}>Inici</button>
-        <button onClick={() => navigate("topics")}>Temari</button>\n        <button onClick={() => navigate("sources")}>Fonts oficials</button>
+        <button onClick={() => navigate("topics")}>Temari</button>
+        <button onClick={() => navigate("sources")}>Fonts oficials</button>
         <button onClick={() => { setPracticeTopic(undefined); navigate("practice"); }}>Practicar</button>
         <button onClick={() => navigate("exam")}>Simulacre</button>
       </nav>}
@@ -105,11 +117,22 @@ export default function AppShell() {
         <div className="page-intro"><div className="eyebrow dark">PREPARACIÓ LLICÈNCIES D I E</div><h1>El temari, pas a pas.</h1><p>Explora els blocs d&apos;estudi. Els títols i continguts definitius s&apos;han de contrastar amb el programa oficial vigent abans de publicar-los.</p></div>
         <div className="topic-layout">
           <div className="topic-list">{topics.map((topic) => <button key={topic.id} className={`topic-row ${selectedTopic === topic.id ? "selected" : ""}`} onClick={() => setSelectedTopic(topic.id)}><span className="topic-number">{String(topic.id).padStart(2,"0")}</span><span className="topic-row-text"><b>{topic.title}</b><small>{topic.subtitle}</small></span><ChevronRight size={18}/></button>)}</div>
-          <div className="topic-detail"><span className="eyebrow">BLOC {String(activeTopic.id).padStart(2,"0")}</span><h2>{activeTopic.title}</h2><p>{activeTopic.description}</p><div className="topic-notice"><ShieldCheck size={18}/><span>Índex alineat amb el programa publicat per la Guàrdia Civil. Les fitxes ampliades i les referències jurídiques s&apos;estan completant.</span></div><div className="topic-notice"><BookOpen size={18}/><span><b>Objectius d’aprenentatge</b><br/>{lessonContent[activeTopic.id].objectives.join(" ")}</span></div><ul className="lesson-checklist">{lessonContent[activeTopic.id].checklist.map(item => <li key={item}>{item}</li>)}</ul><button className="button-primary" onClick={() => { setPracticeTopic(activeTopic.id); navigate("practice"); }}>Practicar aquest tema <ArrowRight size={16}/></button>\n            <a className="text-link" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer">Consultar el programa oficial ↗</a></div>
+          <div className="topic-detail"><span className="eyebrow">BLOC {String(activeTopic.id).padStart(2,"0")}</span><h2>{activeTopic.title}</h2><p>{activeTopic.description}</p><div className="topic-notice"><ShieldCheck size={18}/><span>Índex alineat amb el programa publicat per la Guàrdia Civil. Les fitxes ampliades i les referències jurídiques s&apos;estan completant.</span></div><div className="topic-notice"><BookOpen size={18}/><span><b>Objectius d’aprenentatge</b><br/>{lessonContent[activeTopic.id].objectives.join(" ")}</span></div><ul className="lesson-checklist">{lessonContent[activeTopic.id].checklist.map(item => <li key={item}>{item}</li>)}</ul><button className="button-primary" onClick={() => { setPracticeTopic(activeTopic.id); navigate("practice"); }}>Practicar aquest tema <ArrowRight size={16}/></button>
+            <a className="text-link" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer">Consultar el programa oficial ↗</a></div>
         </div>
       </div>}
 
-      {view === "sources" && <div className="page-wrap inner-page">\n        <div className="page-intro"><div className="eyebrow dark">DOCUMENTACIÓ I VERIFICACIÓ</div><h1>Fonts oficials.</h1><p>La normativa pot canviar. Utilitza sempre els textos oficials consolidats i comprova la data de vigència abans d&apos;estudiar un requisit concret.</p></div>\n        <div className="feature-grid">\n          <a className="feature-card" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer"><span className="feature-kicker">GUÀRDIA CIVIL</span><h3>Programa oficial D i E</h3><p>Set temes oficials, qüestionaris i respostes publicades per a la preparació de la prova teòrica.</p><span className="card-link">Obrir font oficial ↗</span></a>\n          <a className="feature-card" href="https://www.boe.es/buscar/act.php?id=BOE-A-1993-6202" target="_blank" rel="noreferrer"><span className="feature-kicker">BOE · TEXT CONSOLIDAT</span><h3>Reglament d&apos;Armes</h3><p>Reial decret 137/1993, de 29 de gener. Consulta el text consolidat i les modificacions.</p><span className="card-link">Obrir al BOE ↗</span></a>\n          <a className="feature-card" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/" target="_blank" rel="noreferrer"><span className="feature-kicker">GUÀRDIA CIVIL</span><h3>Proves de capacitació</h3><p>Informació de les proves teòriques i pràctiques per a les llicències D i E.</p><span className="card-link">Obrir informació ↗</span></a>\n        </div>\n        <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><ShieldCheck size={18}/><span>Caça 360 és una eina privada d&apos;estudi i no està vinculada a la Guàrdia Civil. Les preguntes pròpies no són preguntes oficials.</span></div>\n      </div>}\n\n      {(view === "practice" || view === "exam") && <div className="page-wrap quiz-page">
+      {view === "sources" && <div className="page-wrap inner-page">
+        <div className="page-intro"><div className="eyebrow dark">DOCUMENTACIÓ I VERIFICACIÓ</div><h1>Fonts oficials.</h1><p>La normativa pot canviar. Utilitza sempre els textos oficials consolidats i comprova la data de vigència abans d&apos;estudiar un requisit concret.</p></div>
+        <div className="feature-grid">
+          <a className="feature-card" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer"><span className="feature-kicker">GUÀRDIA CIVIL</span><h3>Programa oficial D i E</h3><p>Set temes oficials, qüestionaris i respostes publicades per a la preparació de la prova teòrica.</p><span className="card-link">Obrir font oficial ↗</span></a>
+          <a className="feature-card" href="https://www.boe.es/buscar/act.php?id=BOE-A-1993-6202" target="_blank" rel="noreferrer"><span className="feature-kicker">BOE · TEXT CONSOLIDAT</span><h3>Reglament d&apos;Armes</h3><p>Reial decret 137/1993, de 29 de gener. Consulta el text consolidat i les modificacions.</p><span className="card-link">Obrir al BOE ↗</span></a>
+          <a className="feature-card" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/" target="_blank" rel="noreferrer"><span className="feature-kicker">GUÀRDIA CIVIL</span><h3>Proves de capacitació</h3><p>Informació de les proves teòriques i pràctiques per a les llicències D i E.</p><span className="card-link">Obrir informació ↗</span></a>
+        </div>
+        <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><ShieldCheck size={18}/><span>Caça 360 és una eina privada d&apos;estudi i no està vinculada a la Guàrdia Civil. Les preguntes pròpies no són preguntes oficials.</span></div>
+      </div>}
+
+      {(view === "practice" || view === "exam") && <div className="page-wrap quiz-page">
         <div className="page-intro"><div className="eyebrow dark">{view === "exam" ? "SIMULACRE DE DEMOSTRACIÓ" : "MODE D'APRENENTATGE"}</div><h1>{view === "exam" ? "És el teu moment." : "Practica i aprèn."}</h1><p>{view === "exam" ? "20 preguntes · 20 minuts · mínim 16 encerts. Preguntes originals d’entrenament, no oficials." : "Preguntes fictícies per provar el funcionament de l'aplicació."}</p></div>
         <Quiz mode={view} topicId={view === "practice" ? practiceTopic : undefined} onComplete={() => setCompleted(v => v + 1)} />
       </div>}
