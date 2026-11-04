@@ -1,10 +1,12 @@
 # Caça 360 — estat del producte
 
-## Objectiu
-PWA en català per preparar la prova teòrica de les llicències D i E a Espanya, amb contingut basat en el programa publicat per la Guàrdia Civil.
+Actualitzat: 4 de novembre de 2026.
+
+## Abast
+PWA en català per preparar la prova teòrica de les llicències d'armes D i E. El projecte es manté íntegrament al repositori GitHub; no s'ha connectat Google Play, Vercel ni cap servei de desplegament extern.
 
 ## Programa oficial verificat
-Font: [Guàrdia Civil — Programa de coneixements D, E i AEM](https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/).
+Font principal: [Guàrdia Civil — Programa de coneixements D, E i AEM](https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/).
 
 Els set temes de l'app segueixen l'estructura oficial:
 1. Funcionament de les armes; peces, mecanismes, conservació i seguretat.
@@ -15,17 +17,41 @@ Els set temes de l'app segueixen l'estructura oficial:
 6. Reparació, prova i dipòsit.
 7. Armes de col·lecció; articles 2 i 107; història, calibres, munició i pólvora.
 
-La informació oficial consultada estableix 20 preguntes, 20 minuts i 16 respostes correctes com a mínim. La distribució de preguntes per tema que apareix a la pàgina suma 24, per tant no s'ha codificat com a regla de selecció.
+La informació oficial consultada indica 20 preguntes, 20 minuts i 16 encerts mínims. La distribució de preguntes per tema que apareix a la pàgina suma 24; per això no s'aplica com a regla del simulacre.
 
-## Banc de preguntes
-El fitxer src/data/question-bank.ts conté preguntes originals de Caça 360, no el banc oficial de 400 preguntes. No s'han de presentar com preguntes oficials ni com una reproducció literal del qüestionari de la Guàrdia Civil.
+## Funcions implementades
+- Inici i navegació adaptada a mòbil i ordinador.
+- Set temes amb objectius, resums, punts clau i llista de comprovació.
+- Enllaços directes als qüestionaris i fulls de respostes oficials per tema.
+- 35 preguntes originals de Caça 360, cinc per tema.
+- Pràctica general i pràctica específica per tema.
+- Simulacre de 20 preguntes amb temporitzador de 20 minuts, llindar de 16 encerts, possibilitat de deixar en blanc, tornar enrere i canviar respostes.
+- Resultats i revisió final de les respostes del simulacre.
+- Historial local de fins a 20 proves, mitjana d'encerts i recompte total.
+- Pàgina de fonts oficials i enllaços al BOE.
+- Pàgines inicials de privacitat i condicions d'ús.
+- PWA amb manifest, icones i cache bàsica del shell per recuperar la pàgina inicial després d'haver-la visitat.
+- GitHub Actions amb instal·lació de dependències, ESLint i compilació.
 
-La Guàrdia Civil publica els qüestionaris oficials per temes i indica que el banc té 400 preguntes i és de domini públic dels aspirants. Abans d'incorporar-les literalment cal verificar els documents, les respostes i la seva vigència.
+## Límits coneguts
+- Les 35 preguntes pròpies no són les 400 preguntes oficials. Els qüestionaris oficials s'obren des dels PDF de la Guàrdia Civil.
+- Els resums són material d'orientació; encara necessiten revisió experta i ampliació amb referències legals article per article.
+- El progrés es desa només al navegador. No hi ha comptes, sincronització ni subscripció.
+- El mode offline és parcial; no garanteix que totes les pantalles i continguts estiguin disponibles sense xarxa.
+- No hi ha desplegament HTTPS, per tant encara no es pot instal·lar i provar com a PWA en dispositius reals.
+- Les pàgines de privacitat i condicions són esborranys i necessiten revisió jurídica abans d'una publicació comercial.
 
-## Estat tècnic
-- Next.js 15 / React 19 / TypeScript.
-- PWA amb manifest i service worker inicial.
-- CI a GitHub Actions: lint i build.
-- Progrés local al navegador pendent d'implementar.
-- Autenticació, sincronització, administració i subscripcions pendents.
-- Encara no desplegada en HTTPS; no instal·lable com a PWA real fins al desplegament.
+## Següents fites abans de dir que està llesta
+1. Aconseguir una execució verda de lint i build a GitHub Actions.
+2. Completar la revisió jurídica i editorial dels resums i les 35 preguntes.
+3. Afegir més preguntes pròpies verificades o una importació controlada del material oficial publicat.
+4. Fer proves funcionals completes en mòbil i ordinador.
+5. Millorar el suport offline i verificar instal·lació PWA amb HTTPS.
+6. Tancar privacitat, condicions d'ús i accessibilitat.
+7. Decidir, més endavant, si cal compte d'usuari, sincronització i model freemium.
+
+## Principis editorials
+- No presentar preguntes pròpies com a oficials.
+- Conservar font, tema i data de revisió de cada contingut.
+- Comprovar la vigència de les referències normatives.
+- No substituir la formació pràctica autoritzada per contingut digital.
