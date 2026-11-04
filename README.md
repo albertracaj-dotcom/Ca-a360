@@ -12,7 +12,7 @@ Aplicació web progressiva (PWA) en català per preparar la prova teòrica de le
 - Historial local de fins a 20 proves, mitjana d'encerts i recompte total.
 - Pàgina de fonts oficials i normativa.
 - Pàgines inicials de privacitat i condicions d'ús.
-- Manifest PWA, icones i cache bàsica del shell per a ús sense connexió després d'haver visitat l'app.
+- Manifest PWA, icones PNG estàndard 192/512, icona Apple Touch i cache bàsica del shell per a ús parcial sense connexió després d'haver visitat l'app.
 
 ## Precisió i fonts
 Programa oficial: [Guàrdia Civil — Programa de coneixements de la prova teòrica D, E i AEM](https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/).
