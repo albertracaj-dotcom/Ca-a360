@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CheckCircle2, XCircle, Clock3, RotateCcw, Trophy, ArrowRight } from "lucide-react";
 import { questionBank } from "@/data/question-bank";
 import { EXAM_CONFIG } from "@/lib/quiz";
