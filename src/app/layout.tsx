@@ -1,16 +1,37 @@
 import type { Metadata } from "next";
+import PWAInstall from "@/components/PWAInstall";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Caça 360 | Formació cinegètica",
   description: "Prepara't per a les proves teòriques D i E i aprèn sobre el món de la caça.",
   applicationName: "Caça 360",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Caça 360",
+    statusBarStyle: "default"
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg"
+  },
+  formatDetection: { telephone: false }
+};
+
+export const viewport = {
+  themeColor: "#183d30",
+  width: "device-width",
+  initialScale: 1
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ca">
-      <body>{children}</body>
+      <body>
+        {children}
+        <PWAInstall />
+      </body>
     </html>
   );
 }
