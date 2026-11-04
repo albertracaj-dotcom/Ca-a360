@@ -9,8 +9,19 @@ type QuizResult = { score: number; total: number; mode: "practice" | "exam"; com
 type Props = { mode: "practice" | "exam"; onComplete: (result: QuizResult) => void; topicId?: number };
 type Status = "active" | "finished";
 
+type QuizQuestion = (typeof questionBank)[number];
+
 function shuffled<T>(items: T[]) {
   return [...items].sort(() => Math.random() - 0.5);
+}
+
+function shuffleOptions(question: QuizQuestion): QuizQuestion {
+  const order = [0, 1, 2].sort(() => Math.random() - 0.5);
+  return {
+    ...question,
+    options: order.map(index => question.options[index]) as [string, string, string],
+    correctIndex: order.indexOf(question.correctIndex),
+  };
 }
 
 export default function Quiz({ mode, onComplete, topicId }: Props) {
