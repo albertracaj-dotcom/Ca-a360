@@ -13,23 +13,32 @@ import { lessonContent } from "@/data/lesson-content";
 import { studyNotes } from "@/data/study-notes";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
+type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string };
 
 export default function AppShell() {
   const [view, setView] = useState<View>("home");
   const [mobileMenu, setMobileMenu] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState(1);
   const [completed, setCompleted] = useState(0);
+  const [results, setResults] = useState<QuizResult[]>([]);
   const [practiceTopic, setPracticeTopic] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("caca360-completed");
     if (saved) setCompleted(Number(saved) || 0);
+    const savedResults = window.localStorage.getItem("caca360-results");
+    if (savedResults) {
+      try { setResults(JSON.parse(savedResults) as QuizResult[]); } catch { setResults([]); }
+    }
   }, []);
   useEffect(() => {
     window.localStorage.setItem("caca360-completed", String(completed));
-  }, [completed]);
+    window.localStorage.setItem("caca360-results", JSON.stringify(results));
+  }, [completed, results]);
 
   const activeTopic = useMemo(() => topics.find(t => t.id === selectedTopic) ?? topics[0], [selectedTopic]);
+  const averageScore = results.length ? Math.round(results.reduce((sum, item) => sum + item.score / item.total * 100, 0) / results.length) : 0;
+  const examCount = results.filter(item => item.mode === "exam").length;
 
   function navigate(next: View) {
     setView(next);
@@ -128,9 +137,10 @@ export default function AppShell() {
 
       {view === "progress" && <div className="page-wrap inner-page">
         <div className="page-intro"><div className="eyebrow dark">SEGUIMENT PERSONAL</div><h1>El teu progrés.</h1><p>El recompte es desa només en aquest navegador i dispositiu. Encara no hi ha compte d’usuari ni sincronització entre dispositius.</p></div>
-        <div className="stats-strip"><div><strong>{completed}</strong><span>Tests completats</span></div><div><strong>{topics.length}</strong><span>Temes disponibles</span></div><div><strong>20</strong><span>Preguntes simulacre</span></div><div><strong>16</strong><span>Encerts mínims</span></div></div>
+        <div className="stats-strip"><div><strong>{completed}</strong><span>Tests completats</span></div><div><strong>{averageScore}%</strong><span>Mitjana d’encerts</span></div><div><strong>{examCount}</strong><span>Simulacres fets</span></div><div><strong>{topics.length}</strong><span>Temes disponibles</span></div></div>
+        <section className="section-block"><div className="section-heading"><div><div className="eyebrow dark">ACTIVITAT RECENT</div><h2>Les teves últimes proves</h2></div></div>{results.length === 0 ? <p>Encara no has completat cap prova. Quan acabis un test, aquí en veuràs el resultat.</p> : <div className="results-list">{results.slice(0,5).map((item,i) => <div className="results-row" key={item.completedAt + i}><b>{item.mode === "exam" ? "Simulacre" : "Pràctica"}</b><span>{item.score}/{item.total} encerts · {Math.round(item.score/item.total*100)}%</span><small>{item.completedAt.slice(0,10)}</small></div>)}</div>}</section>
         <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><BookOpen size={18}/><span>Completa sessions de pràctica per anar consolidant els set temes. En una versió futura, aquest espai inclourà resultats per tema, evolució i sincronització amb el teu compte.</span></div>
-        <button className="text-link" onClick={() => { setCompleted(0); window.localStorage.removeItem("caca360-completed"); }}>Reiniciar el recompte local</button>
+        <button className="text-link" onClick={() => { setCompleted(0); setResults([]); window.localStorage.removeItem("caca360-completed"); window.localStorage.removeItem("caca360-results"); }}>Reiniciar el recompte local</button>
       </div>}
 
       {view === "sources" && <div className="page-wrap inner-page">
@@ -145,7 +155,7 @@ export default function AppShell() {
 
       {(view === "practice" || view === "exam") && <div className="page-wrap quiz-page">
         <div className="page-intro"><div className="eyebrow dark">{view === "exam" ? "SIMULACRE DE DEMOSTRACIÓ" : "MODE D'APRENENTATGE"}</div><h1>{view === "exam" ? "És el teu moment." : "Practica i aprèn."}</h1><p>{view === "exam" ? "20 preguntes · 20 minuts · mínim 16 encerts. Preguntes originals d’entrenament, no oficials." : "Preguntes fictícies per provar el funcionament de l'aplicació."}</p></div>
-        <Quiz mode={view} topicId={view === "practice" ? practiceTopic : undefined} onComplete={() => setCompleted(v => v + 1)} />
+        <Quiz mode={view} topicId={view === "practice" ? practiceTopic : undefined} onComplete={(result) => { setCompleted(v => v + 1); setResults(prev => [result, ...prev].slice(0, 20)); }} />
       </div>}
 
       <footer className="footer"><div className="footer-brand">CAÇA <b>360</b></div><p>Formació cinegètica amb coneixement i responsabilitat.</p><span>© 2026 Caça 360 · Prototip en desenvolupament</span></footer>
