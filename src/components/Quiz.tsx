@@ -22,13 +22,13 @@ export default function Quiz({ mode, onComplete }: Props) {
   const [showExplanation, setShowExplanation] = useState(false);
   const completionSent = useRef(false);
 
-  function finish() {
+  const finish = useCallback(() => {
     setStatus("finished");
     if (!completionSent.current) {
       completionSent.current = true;
       onComplete();
     }
-  }
+  }, [onComplete]);
 
   useEffect(() => {
     if (mode !== "exam" || status !== "active") return;
@@ -43,7 +43,7 @@ export default function Quiz({ mode, onComplete }: Props) {
       });
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [mode, status]);
+  }, [mode, status, finish]);
 
   const current = questions[index];
   const selected = answers[index];
