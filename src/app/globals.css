@@ -47,3 +47,5 @@
 .legal-content p{font-size:13px;line-height:1.8;color:#5e685f}
 .legal-note{margin-top:25px;padding:12px;background:#f1eee5;color:#826d4d!important;font-size:11px!important}
 @media(max-width:600px){.footer-links{margin-left:0;width:100%}.legal-content{padding:20px}}
+
+.source-note{max-width:900px;margin:22px 0 8px;padding:14px 16px;background:#f0eee5;border-left:3px solid var(--gold);color:#6e634d;font-size:11px;line-height:1.7}
