@@ -5,7 +5,7 @@ import { CheckCircle2, XCircle, Clock3, RotateCcw, Trophy, ArrowRight } from "lu
 import { questionBank } from "@/data/question-bank";
 import { EXAM_CONFIG } from "@/lib/quiz";
 
-type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string };
+type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string; topicId?: number };
 type Props = { mode: "practice" | "exam"; onComplete: (result: QuizResult) => void; topicId?: number };
 type Status = "active" | "finished";
 
@@ -46,7 +46,7 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
     setStatus("finished");
     if (!completionSent.current) {
       completionSent.current = true;
-      onComplete({ score, total: questions.length, mode, completedAt: new Date().toISOString() });
+      onComplete({ score, total: questions.length, mode, completedAt: new Date().toISOString(), topicId });
     }
   }, [onComplete, score, questions.length, mode]);
 
