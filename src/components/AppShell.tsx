@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Quiz from "./Quiz";
 import { topics } from "@/data/topics";
-import { officialMaterials } from "@/data/official-program";
+import { officialMaterials, officialProgram } from "@/data/official-program";
 import { lessonContent } from "@/data/lesson-content";
 import { studyNotes } from "@/data/study-notes";
 
@@ -150,6 +150,7 @@ export default function AppShell() {
           <a className="feature-card" href="https://www.boe.es/buscar/act.php?id=BOE-A-1993-6202" target="_blank" rel="noreferrer"><span className="feature-kicker">BOE · TEXT CONSOLIDAT</span><h3>Reglament d&apos;Armes</h3><p>Reial decret 137/1993, de 29 de gener. Consulta el text consolidat i les modificacions.</p><span className="card-link">Obrir al BOE ↗</span></a>
           <a className="feature-card" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/" target="_blank" rel="noreferrer"><span className="feature-kicker">GUÀRDIA CIVIL</span><h3>Proves de capacitació</h3><p>Informació de les proves teòriques i pràctiques per a les llicències D i E.</p><span className="card-link">Obrir informació ↗</span></a>
         </div>
+        <p className="source-note">{officialProgram.distributionNote}</p>
         <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><ShieldCheck size={18}/><span>Caça 360 és una eina privada d&apos;estudi i no està vinculada a la Guàrdia Civil. Les preguntes pròpies no són preguntes oficials.</span></div>
       </div>}
 
