@@ -38,3 +38,12 @@
 .results-row span{color:var(--muted)}
 .results-row small{color:#92998f}
 @media(max-width:600px){.results-row{grid-template-columns:1fr auto;gap:5px}.results-row small{grid-column:1/-1}}
+
+.footer-links{display:flex;gap:16px;margin-left:auto}
+.footer-links a{font-size:10px;color:var(--forest);text-decoration:underline;text-underline-offset:3px}
+.legal-content{max-width:800px;background:var(--paper);border:1px solid var(--line);padding:28px}
+.legal-content h2{font-family:'Playfair Display',serif;color:var(--forest);font-size:22px;font-weight:500;margin:22px 0 8px}
+.legal-content h2:first-child{margin-top:0}
+.legal-content p{font-size:13px;line-height:1.8;color:#5e685f}
+.legal-note{margin-top:25px;padding:12px;background:#f1eee5;color:#826d4d!important;font-size:11px!important}
+@media(max-width:600px){.footer-links{margin-left:0;width:100%}.legal-content{padding:20px}}
