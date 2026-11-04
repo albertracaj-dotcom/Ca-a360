@@ -31,17 +31,20 @@ export default function PWAInstall() {
     window.addEventListener("beforeinstallprompt", onBeforeInstall);
     window.addEventListener("appinstalled", onInstalled);
 
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
+    const registerServiceWorker = () => {
+      if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js").catch((error) => {
           console.error("No s'ha pogut activar el mode sense connexió:", error);
         });
-      });
-    }
+      }
+    };
+    if (document.readyState === "complete") registerServiceWorker();
+    else window.addEventListener("load", registerServiceWorker);
 
     return () => {
       window.removeEventListener("beforeinstallprompt", onBeforeInstall);
       window.removeEventListener("appinstalled", onInstalled);
+      window.removeEventListener("load", registerServiceWorker);
     };
   }, []);
 
