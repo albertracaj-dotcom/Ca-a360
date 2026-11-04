@@ -5,7 +5,8 @@ import { CheckCircle2, XCircle, Clock3, RotateCcw, Trophy, ArrowRight } from "lu
 import { questionBank } from "@/data/question-bank";
 import { EXAM_CONFIG } from "@/lib/quiz";
 
-type Props = { mode: "practice" | "exam"; onComplete: () => void; topicId?: number };
+type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string };
+type Props = { mode: "practice" | "exam"; onComplete: (result: QuizResult) => void; topicId?: number };
 type Status = "active" | "finished";
 
 function shuffled<T>(items: T[]) {
@@ -30,9 +31,9 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
     setStatus("finished");
     if (!completionSent.current) {
       completionSent.current = true;
-      onComplete();
+      onComplete({ score, total: questions.length, mode, completedAt: new Date().toISOString() });
     }
-  }, [onComplete]);
+  }, [onComplete, score, questions.length, mode]);
 
   useEffect(() => {
     if (mode !== "exam" || status !== "active") return;
