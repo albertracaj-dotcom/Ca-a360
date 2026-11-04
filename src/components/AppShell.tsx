@@ -9,7 +9,8 @@ import {
 import Quiz from "./Quiz";
 import { topics } from "@/data/topics";
 import { officialMaterials } from "@/data/official-program";
-import { lessonContent } from "@/data/lesson-content";\nimport { studyNotes } from "@/data/study-notes";
+import { lessonContent } from "@/data/lesson-content";
+import { studyNotes } from "@/data/study-notes";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
 
