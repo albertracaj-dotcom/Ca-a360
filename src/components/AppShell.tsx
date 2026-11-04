@@ -13,7 +13,7 @@ import { lessonContent } from "@/data/lesson-content";
 import { studyNotes } from "@/data/study-notes";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
-type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string };
+type QuizResult = { score: number; total: number; mode: "practice" | "exam"; completedAt: string; topicId?: number };
 
 export default function AppShell() {
   const [view, setView] = useState<View>("home");
@@ -39,6 +39,10 @@ export default function AppShell() {
   const activeTopic = useMemo(() => topics.find(t => t.id === selectedTopic) ?? topics[0], [selectedTopic]);
   const averageScore = results.length ? Math.round(results.reduce((sum, item) => sum + item.score / item.total * 100, 0) / results.length) : 0;
   const examCount = results.filter(item => item.mode === "exam").length;
+  const topicStats = topics.map(topic => {
+    const attempts = results.filter(item => item.topicId === topic.id);
+    return { ...topic, attempts: attempts.length, average: attempts.length ? Math.round(attempts.reduce((sum, item) => sum + item.score / item.total * 100, 0) / attempts.length) : 0 };
+  });
 
   function navigate(next: View) {
     setView(next);
@@ -138,7 +142,7 @@ export default function AppShell() {
       {view === "progress" && <div className="page-wrap inner-page">
         <div className="page-intro"><div className="eyebrow dark">SEGUIMENT PERSONAL</div><h1>El teu progrés.</h1><p>El recompte es desa només en aquest navegador i dispositiu. Encara no hi ha compte d’usuari ni sincronització entre dispositius.</p></div>
         <div className="stats-strip"><div><strong>{completed}</strong><span>Tests completats</span></div><div><strong>{averageScore}%</strong><span>Mitjana d’encerts</span></div><div><strong>{examCount}</strong><span>Simulacres fets</span></div><div><strong>{topics.length}</strong><span>Temes disponibles</span></div></div>
-        <section className="section-block"><div className="section-heading"><div><div className="eyebrow dark">ACTIVITAT RECENT</div><h2>Les teves últimes proves</h2></div></div>{results.length === 0 ? <p>Encara no has completat cap prova. Quan acabis un test, aquí en veuràs el resultat.</p> : <div className="results-list">{results.slice(0,5).map((item,i) => <div className="results-row" key={item.completedAt + i}><b>{item.mode === "exam" ? "Simulacre" : "Pràctica"}</b><span>{item.score}/{item.total} encerts · {Math.round(item.score/item.total*100)}%</span><small>{item.completedAt.slice(0,10)}</small></div>)}</div>}</section>
+        <section className="section-block"><div className="section-heading"><div><div className="eyebrow dark">ACTIVITAT RECENT</div><h2>Les teves últimes proves</h2></div></div>{results.length === 0 ? <p>Encara no has completat cap prova. Quan acabis un test, aquí en veuràs el resultat.</p> : <div className="results-list">{results.slice(0,5).map((item,i) => <div className="results-row" key={item.completedAt + i}><b>{item.mode === "exam" ? "Simulacre" : item.topicId ? `Pràctica · Tema ${item.topicId}` : "Pràctica general"}</b><span>{item.score}/{item.total} encerts · {Math.round(item.score/item.total*100)}%</span><small>{item.completedAt.slice(0,10)}</small></div>)}</div>}</section>
         <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><BookOpen size={18}/><span>Completa sessions de pràctica per anar consolidant els set temes. En una versió futura, aquest espai inclourà resultats per tema, evolució i sincronització amb el teu compte.</span></div>
         <button className="text-link" onClick={() => { setCompleted(0); setResults([]); window.localStorage.removeItem("caca360-completed"); window.localStorage.removeItem("caca360-results"); }}>Reiniciar el recompte local</button>
       </div>}
