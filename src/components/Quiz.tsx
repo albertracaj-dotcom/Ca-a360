@@ -73,7 +73,7 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
     else { setIndex(i => i + 1); setShowExplanation(false); }
   }
   function previous() {
-    if (index > 0) { setIndex(i => i - 1); setShowExplanation(false); }
+    if (index > 0) { setIndex(i => i - 1); setShowExplanation(mode === "practice" && answers[index - 1] !== undefined); }
   }
   function restart() {
     setAttempt(value => value + 1); setIndex(0); setAnswers({}); setStatus("active"); setShowExplanation(false);
@@ -111,6 +111,6 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
       </button>;
     })}</div>
     {showExplanation && <div className="explanation"><b>{selected === current.correctIndex ? "Resposta correcta" : "Resposta incorrecta"}</b><p>{current.explanation}</p></div>}
-    <div className="quiz-bottom"><span>{Object.keys(answers).length} respostes contestades</span><div className="quiz-actions"><button className="button-secondary" disabled={index === 0} onClick={previous}>Anterior</button><button className="button-primary" disabled={selected === undefined && mode === "practice"} onClick={next}>{selected === undefined ? "Deixar en blanc" : index === questions.length - 1 ? "Veure resultat" : "Següent"} <ArrowRight size={16}/></button></div></div>
+    <div className="quiz-bottom"><span>{Object.keys(answers).length} respostes contestades</span><div className="quiz-actions"><button className="button-secondary" disabled={index === 0} onClick={previous}>Anterior</button><button className="button-primary" disabled={selected === undefined && mode === "practice"} onClick={next}>{index === questions.length - 1 ? "Veure resultat" : selected === undefined ? "Deixar en blanc" : "Següent"} <ArrowRight size={16}/></button></div></div>
   </section>;
 }
