@@ -1,0 +1,9 @@
+export const topics = [
+  { id: 1, title: "Marc normatiu i llicències", subtitle: "Normativa i requisits", description: "Bloc provisional per organitzar l'estudi del marc normatiu, les categories de llicència i els requisits administratius. Cal validar-ne l'abast amb el programa oficial vigent." },
+  { id: 2, title: "Armes i classificació", subtitle: "Tipus i característiques", description: "Bloc provisional sobre classificació i conceptes generals de les armes incloses en el temari oficial. No és una guia d'ús ni de manipulació." },
+  { id: 3, title: "Cartutxeria i munició", subtitle: "Conceptes i terminologia", description: "Bloc provisional per estudiar la terminologia i els conceptes que constin al programa oficial. Contingut pendent de revisió documental." },
+  { id: 4, title: "Conservació i manteniment", subtitle: "Seguretat i custòdia", description: "Bloc provisional centrat en els principis de seguretat, custòdia i conservació que estableixi la normativa aplicable." },
+  { id: 5, title: "Seguretat en el maneig", subtitle: "Prevenció i responsabilitat", description: "Bloc provisional sobre prevenció d'accidents, responsabilitat i normes de seguretat. La formació pràctica s'ha de fer en entorns autoritzats." },
+  { id: 6, title: "Documentació i permisos", subtitle: "Tràmits i obligacions", description: "Bloc provisional sobre documentació, vigència, obligacions de la persona titular i tràmits davant l'autoritat competent." },
+  { id: 7, title: "Normativa complementària", subtitle: "Disposicions aplicables", description: "Bloc provisional per recollir les altres disposicions que apareguin expressament al programa oficial vigent." }
+];
