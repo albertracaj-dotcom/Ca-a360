@@ -7,7 +7,7 @@ import {
   X
 } from "lucide-react";
 import Quiz from "./Quiz";
-import { topics } from "@/data/topics";
+import { topics } from "@/data/topics";\nimport { officialMaterials } from "@/data/official-program";
 import { lessonContent } from "@/data/lesson-content";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
@@ -120,7 +120,7 @@ export default function AppShell() {
         <div className="topic-layout">
           <div className="topic-list">{topics.map((topic) => <button key={topic.id} className={`topic-row ${selectedTopic === topic.id ? "selected" : ""}`} onClick={() => setSelectedTopic(topic.id)}><span className="topic-number">{String(topic.id).padStart(2,"0")}</span><span className="topic-row-text"><b>{topic.title}</b><small>{topic.subtitle}</small></span><ChevronRight size={18}/></button>)}</div>
           <div className="topic-detail"><span className="eyebrow">BLOC {String(activeTopic.id).padStart(2,"0")}</span><h2>{activeTopic.title}</h2><p>{activeTopic.description}</p><div className="topic-notice"><ShieldCheck size={18}/><span>Índex alineat amb el programa publicat per la Guàrdia Civil. Les fitxes ampliades i les referències jurídiques s&apos;estan completant.</span></div><div className="topic-notice"><BookOpen size={18}/><span><b>Objectius d’aprenentatge</b><br/>{lessonContent[activeTopic.id].objectives.join(" ")}</span></div><ul className="lesson-checklist">{lessonContent[activeTopic.id].checklist.map(item => <li key={item}>{item}</li>)}</ul><button className="button-primary" onClick={() => { setPracticeTopic(activeTopic.id); navigate("practice"); }}>Practicar aquest tema <ArrowRight size={16}/></button>
-            <a className="text-link" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer">Consultar el programa oficial ↗</a></div>
+            <div className="official-pdf-links"><a href={officialMaterials.find(item => item.topicId === activeTopic.id)?.questionsUrl} target="_blank" rel="noreferrer">Qüestionari oficial del tema ↗</a><a href={officialMaterials.find(item => item.topicId === activeTopic.id)?.answersUrl} target="_blank" rel="noreferrer">Respostes oficials ↗</a></div></div>
         </div>
       </div>}
 
