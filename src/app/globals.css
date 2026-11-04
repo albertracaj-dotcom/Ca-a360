@@ -57,3 +57,7 @@
 .topic-progress-row b{font-size:11px;color:var(--forest)}
 .topic-progress-row small{font-size:10px;color:var(--muted)}
 .topic-progress-row>span{font-family:'Playfair Display',serif;font-size:20px;color:var(--forest)}
+
+.legal-references{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #ffffff24}
+.legal-references>b{width:100%;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#eadbb9}
+.legal-references a{font-size:10px;line-height:1.5;color:#e2e9df;text-decoration:underline;text-underline-offset:3px}
