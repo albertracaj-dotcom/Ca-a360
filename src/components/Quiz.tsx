@@ -60,6 +60,9 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
     if (index === questions.length - 1) finish();
     else { setIndex(i => i + 1); setShowExplanation(false); }
   }
+  function previous() {
+    if (index > 0) { setIndex(i => i - 1); setShowExplanation(false); }
+  }
   function restart() {
     setAttempt(value => value + 1); setIndex(0); setAnswers({}); setStatus("active"); setShowExplanation(false);
     setSeconds(mode === "exam" ? EXAM_CONFIG.durationSeconds : 0);
