@@ -158,7 +158,7 @@ export default function AppShell() {
         <Quiz mode={view} topicId={view === "practice" ? practiceTopic : undefined} onComplete={(result) => { setCompleted(v => v + 1); setResults(prev => [result, ...prev].slice(0, 20)); }} />
       </div>}
 
-      <footer className="footer"><div className="footer-brand">CAÇA <b>360</b></div><p>Formació cinegètica amb coneixement i responsabilitat.</p><span>© 2026 Caça 360 · Prototip en desenvolupament</span></footer>
+      <footer className="footer"><div className="footer-brand">CAÇA <b>360</b></div><p>Formació cinegètica amb coneixement i responsabilitat.</p><div className="footer-links"><a href="/privacy">Privacitat</a><a href="/terms">Condicions d’ús</a></div><span>© 2026 Caça 360 · En desenvolupament</span></footer>
     </main>
   );
 }
