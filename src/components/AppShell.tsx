@@ -115,7 +115,7 @@ export default function AppShell() {
               <span className="feature-icon"><BookOpen /></span><span className="feature-kicker">01 / APRENENTATGE</span><h3>Estudia per temes</h3><p>Organitza l&apos;estudi en blocs i treballa cada contingut al teu ritme.</p><span className="card-link">Explorar temari <ChevronRight size={16}/></span>
             </button>
             <button className="feature-card feature-dark" onClick={() => { setPracticeTopic(undefined); navigate("practice"); }}>
-              <span className="feature-icon"><Target /></span><span className="feature-kicker">02 / ENTRENAMENT</span><h3>Practica preguntes</h3><p>Fes tests de demostració i aprèn de cada resposta.</p><span className="card-link">Començar pràctica <ChevronRight size={16}/></span>
+              <span className="feature-icon"><Target /></span><span className="feature-kicker">02 / ENTRENAMENT</span><h3>Practica preguntes</h3><p>Practica amb preguntes pròpies i aprèn de cada resposta.</p><span className="card-link">Començar pràctica <ChevronRight size={16}/></span>
             </button>
             <button className="feature-card" onClick={() => navigate("exam")}>
               <span className="feature-icon"><Clock3 /></span><span className="feature-kicker">03 / SIMULACIÓ</span><h3>Posa&apos;t a prova</h3><p>Simulacre de 20 preguntes amb temps i revisió final.</p><span className="card-link">Fer simulacre <ChevronRight size={16}/></span>
