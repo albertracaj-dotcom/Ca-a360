@@ -5,7 +5,7 @@ const APP_URL = "/";
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll([OFFLINE_URL, "/icon.svg", "/icon-maskable.svg"]))
+      .then((cache) => cache.addAll([OFFLINE_URL, "/icon.svg", "/icon-maskable.svg", "/icon-192.png", "/icon-512.png", "/apple-touch-icon.png"]))
       .then(() => self.skipWaiting())
   );
 });
