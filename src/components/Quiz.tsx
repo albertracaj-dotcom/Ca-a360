@@ -77,7 +77,7 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
     <p className="result-lead">{mode === "exam" ? (score >= EXAM_CONFIG.indicativePassMark ? "Aprovat segons el llindar oficial de 16 encerts." : "Encara no arribes al mínim oficial de 16 encerts. Repassa els temes i torna-ho a provar.") : "Sessió de pràctica completada. Repassa les explicacions i reforça els punts febles."}</p>
     <div className="result-bar"><span style={{width: `${(score/questions.length)*100}%`}}/></div>
     <p className="result-percent">{Math.round(score/questions.length*100)}% d&apos;encerts</p>
-    {mode === "exam" && <p className="result-disclaimer">Simulacre d'entrenament amb preguntes originals de Caça 360. No és l'examen oficial ni reprodueix el banc de 400 preguntes de la Guàrdia Civil.</p>}
+    {mode === "exam" && <p className="result-disclaimer">Simulacre d&apos;entrenament amb preguntes originals de Caça 360. No és l&apos;examen oficial ni reprodueix el banc de 400 preguntes de la Guàrdia Civil.</p>}
     <button className="button-primary" onClick={restart}><RotateCcw size={16}/> Tornar a començar</button>
   </section>;
 
