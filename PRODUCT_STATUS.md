@@ -27,7 +27,7 @@ La informació oficial consultada indica 20 preguntes, 20 minuts i 16 encerts m�
 - Pràctica general i pràctica específica per tema.
 - Simulacre de 20 preguntes amb temporitzador de 20 minuts, llindar de 16 encerts, possibilitat de deixar en blanc, tornar enrere i canviar respostes.
 - Resultats i revisió final de les respostes del simulacre.
-- Historial local de fins a 20 proves, mitjana d'encerts i recompte total.
+- Historial local de fins a 20 proves, mitjana d'encerts, recompte total i estadístiques de pràctica per tema.
 - Pàgina de fonts oficials i enllaços al BOE.
 - Pàgines inicials de privacitat i condicions d'ús.
 - PWA amb manifest, icones i cache bàsica del shell per recuperar la pàgina inicial després d'haver-la visitat.
