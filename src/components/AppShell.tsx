@@ -10,7 +10,7 @@ import Quiz from "./Quiz";
 import { topics } from "@/data/topics";
 import { lessonContent } from "@/data/lesson-content";
 
-type View = "home" | "topics" | "practice" | "exam" | "sources";
+type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
 
 export default function AppShell() {
   const [view, setView] = useState<View>("home");
@@ -47,11 +47,12 @@ export default function AppShell() {
           <button className={view === "sources" ? "nav-active" : ""} onClick={() => navigate("sources")}>Fonts oficials</button>
           <button onClick={() => { setPracticeTopic(undefined); navigate("practice"); }}>Practicar</button>
           <button onClick={() => navigate("exam")}>Simulacre</button>
+          <button className={view === "progress" ? "nav-active" : ""} onClick={() => navigate("progress")}>El meu progrés</button>
         </nav>
         <button className="menu-toggle" onClick={() => setMobileMenu(!mobileMenu)} aria-label="Obrir menú">
           {mobileMenu ? <X /> : <Menu />}
         </button>
-        <button className="profile-button" onClick={() => alert("El registre d'usuaris s'incorporarà en la següent fase.")}>El meu compte <span>↗</span></button>
+        <button className="profile-button" onClick={() => navigate("progress")}>El meu progrés <span>↗</span></button>
       </header>
 
       {mobileMenu && <nav className="mobile-nav">
@@ -60,6 +61,7 @@ export default function AppShell() {
         <button onClick={() => navigate("sources")}>Fonts oficials</button>
         <button onClick={() => { setPracticeTopic(undefined); navigate("practice"); }}>Practicar</button>
         <button onClick={() => navigate("exam")}>Simulacre</button>
+        <button onClick={() => navigate("progress")}>El meu progrés</button>
       </nav>}
 
       {view === "home" && <div className="page-wrap">
@@ -72,7 +74,7 @@ export default function AppShell() {
               <button className="button-primary" onClick={() => navigate("topics")}>Comença a estudiar <ArrowRight size={17} /></button>
               <button className="button-ghost" onClick={() => navigate("exam")}><Target size={17} /> Prova un simulacre</button>
             </div>
-            <div className="hero-note"><ShieldCheck size={16} /> Contingut de demostració. Consulta sempre les fonts oficials.</div>
+            <div className="hero-note"><ShieldCheck size={16} /> Temari alineat amb el programa oficial · preguntes pròpies d’entrenament.</div>
           </div>
           <div className="hero-art" aria-label="Paisatge de bosc i muntanya">
             <div className="hero-art-overlay" />
@@ -114,12 +116,19 @@ export default function AppShell() {
       </div>}
 
       {view === "topics" && <div className="page-wrap inner-page">
-        <div className="page-intro"><div className="eyebrow dark">PREPARACIÓ LLICÈNCIES D I E</div><h1>El temari, pas a pas.</h1><p>Explora els blocs d&apos;estudi. Els títols i continguts definitius s&apos;han de contrastar amb el programa oficial vigent abans de publicar-los.</p></div>
+        <div className="page-intro"><div className="eyebrow dark">PROGRAMA OFICIAL D I E</div><h1>El temari, pas a pas.</h1><p>Els set blocs segueixen l’estructura del programa publicat per la Guàrdia Civil. Selecciona un tema per consultar-ne els objectius i practicar preguntes.</p></div>
         <div className="topic-layout">
           <div className="topic-list">{topics.map((topic) => <button key={topic.id} className={`topic-row ${selectedTopic === topic.id ? "selected" : ""}`} onClick={() => setSelectedTopic(topic.id)}><span className="topic-number">{String(topic.id).padStart(2,"0")}</span><span className="topic-row-text"><b>{topic.title}</b><small>{topic.subtitle}</small></span><ChevronRight size={18}/></button>)}</div>
           <div className="topic-detail"><span className="eyebrow">BLOC {String(activeTopic.id).padStart(2,"0")}</span><h2>{activeTopic.title}</h2><p>{activeTopic.description}</p><div className="topic-notice"><ShieldCheck size={18}/><span>Índex alineat amb el programa publicat per la Guàrdia Civil. Les fitxes ampliades i les referències jurídiques s&apos;estan completant.</span></div><div className="topic-notice"><BookOpen size={18}/><span><b>Objectius d’aprenentatge</b><br/>{lessonContent[activeTopic.id].objectives.join(" ")}</span></div><ul className="lesson-checklist">{lessonContent[activeTopic.id].checklist.map(item => <li key={item}>{item}</li>)}</ul><button className="button-primary" onClick={() => { setPracticeTopic(activeTopic.id); navigate("practice"); }}>Practicar aquest tema <ArrowRight size={16}/></button>
             <a className="text-link" href="https://web.guardiacivil.es/es/tramites/autorizaciones-de-armas-y-explosivos/controldearmas/pruebas_licenciasarmas/Programa_prueba_teorica_D__E_y_AEM/" target="_blank" rel="noreferrer">Consultar el programa oficial ↗</a></div>
         </div>
+      </div>}
+
+      {view === "progress" && <div className="page-wrap inner-page">
+        <div className="page-intro"><div className="eyebrow dark">SEGUIMENT PERSONAL</div><h1>El teu progrés.</h1><p>El recompte es desa només en aquest navegador i dispositiu. Encara no hi ha compte d’usuari ni sincronització entre dispositius.</p></div>
+        <div className="stats-strip"><div><strong>{completed}</strong><span>Tests completats</span></div><div><strong>{topics.length}</strong><span>Temes disponibles</span></div><div><strong>20</strong><span>Preguntes simulacre</span></div><div><strong>16</strong><span>Encerts mínims</span></div></div>
+        <div className="topic-notice" style={{background:"#e9eee6",color:"#405044",marginTop:24}}><BookOpen size={18}/><span>Completa sessions de pràctica per anar consolidant els set temes. En una versió futura, aquest espai inclourà resultats per tema, evolució i sincronització amb el teu compte.</span></div>
+        <button className="text-link" onClick={() => { setCompleted(0); window.localStorage.removeItem("caca360-completed"); }}>Reiniciar el recompte local</button>
       </div>}
 
       {view === "sources" && <div className="page-wrap inner-page">
