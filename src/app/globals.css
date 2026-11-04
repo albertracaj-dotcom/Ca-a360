@@ -19,3 +19,9 @@
 .review-item{padding:14px 0;border-bottom:1px solid var(--line);font-size:11px;line-height:1.6}
 .review-item p{margin:5px 0;color:var(--muted)}
 .review-item small{color:#58645a}
+
+.study-summary{margin:18px 0;padding:18px;background:#ffffff12;border:1px solid #ffffff22}
+.study-summary h3{font-family:'Playfair Display',serif;font-size:21px;font-weight:500;margin:0 0 9px;color:#f5f4ed}
+.study-summary p,.study-summary li{font-size:11px;line-height:1.75;color:#dbe4db}
+.study-summary ul{padding-left:18px;display:grid;gap:6px}
+.study-summary .study-focus{padding-top:10px;border-top:1px solid #ffffff24;color:#eadbb9}
