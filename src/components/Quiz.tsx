@@ -19,7 +19,7 @@ export default function Quiz({ mode, onComplete }: Props) {
   useEffect(() => {
     if (mode !== "exam" || status !== "active") return;
     const timer = window.setInterval(() => setSeconds(s => {
-      if (s <= 1) { window.clearInterval(timer); setStatus("finished"); return 0; }
+      if (s <= 1) { window.clearInterval(timer); setStatus("finished"); onComplete(); return 0; }
       return s - 1;
     }), 1000);
     return () => window.clearInterval(timer);
@@ -59,7 +59,7 @@ export default function Quiz({ mode, onComplete }: Props) {
       const isSelected = selected === i;
       const reveal = mode === "practice" && showExplanation;
       const cls = reveal && i === current.correctIndex ? "correct" : isSelected && reveal ? "incorrect" : isSelected ? "chosen" : "";
-      return <button key={i} className={`answer-option ${cls}`} onClick={() => choose(i)} disabled={selected !== undefined}><span className="answer-letter">{String.fromCharCode(65+i)}</span><span>{option}</span>{reveal && i === current.correctIndex && <CheckCircle2 size={19}/ >}{reveal && isSelected && i !== current.correctIndex && <XCircle size={19}/>}</button>;
+      return <button key={i} className={`answer-option ${cls}`} onClick={() => choose(i)} disabled={selected !== undefined}><span className="answer-letter">{String.fromCharCode(65+i)}</span><span>{option}</span>{reveal && i === current.correctIndex && <CheckCircle2 size={19}/>}{reveal && isSelected && i !== current.correctIndex && <XCircle size={19}/>}</button>;
     })}</div>
     {showExplanation && <div className="explanation"><b>{selected === current.correctIndex ? "Resposta correcta" : "Resposta incorrecta"}</b><p>{current.explanation}</p></div>}
     <div className="quiz-bottom"><span>{Object.keys(answers).length} respostes contestades</span><button className="button-primary" disabled={selected === undefined} onClick={next}>{index === questions.length - 1 ? "Veure resultat" : "Següent"} <ArrowRight size={16}/></button></div>
