@@ -30,7 +30,7 @@ La informació oficial consultada indica 20 preguntes, 20 minuts i 16 encerts m�
 - Historial local de fins a 20 proves, mitjana d'encerts, recompte total i estadístiques de pràctica per tema.
 - Pàgina de fonts oficials i enllaços al BOE.
 - Pàgines inicials de privacitat i condicions d'ús.
-- PWA amb manifest, icones i cache bàsica del shell per recuperar la pàgina inicial després d'haver-la visitat.
+- PWA amb manifest, icones PNG de 192/512 px, icona Apple Touch i cache bàsica del shell per recuperar la pàgina inicial després d'haver-la visitat.
 - GitHub Actions amb Node.js 22, auditoria de dependències de producció, ESLint i compilació.
 
 ## Límits coneguts
