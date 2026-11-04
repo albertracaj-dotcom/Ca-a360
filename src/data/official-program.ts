@@ -14,3 +14,13 @@ export const officialProgram = {
  exam:{questions:20,minutes:20,minimumCorrect:16},
  distributionNote:"La pàgina oficial consultada publica una distribució temàtica que suma 24 preguntes tot i indicar que l'exercici en té 20. Caça 360 no aplicarà aquest repartiment fins que l'autoritat el clarifiqui."
 } as const;
+
+export const officialMaterials = [
+  {topicId:1,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema1_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema1r_es.pdf"},
+  {topicId:2,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema2_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema2r_es.pdf"},
+  {topicId:3,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema3_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema3r_es.pdf"},
+  {topicId:4,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema4_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema4r_es.pdf"},
+  {topicId:5,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema5_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema5r_es.pdf"},
+  {topicId:6,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema6_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema6r_es.pdf"},
+  {topicId:7,questionsUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema7_es.pdf",answersUrl:"https://web.guardiacivil.es/export/sites/guardiaCivil/documentos/iarmas/temarios/tema7r_es.pdf"}
+] as const;
