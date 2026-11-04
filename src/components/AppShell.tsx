@@ -154,7 +154,7 @@ export default function AppShell() {
       </div>}
 
       {(view === "practice" || view === "exam") && <div className="page-wrap quiz-page">
-        <div className="page-intro"><div className="eyebrow dark">{view === "exam" ? "SIMULACRE DE DEMOSTRACIÓ" : "MODE D'APRENENTATGE"}</div><h1>{view === "exam" ? "És el teu moment." : "Practica i aprèn."}</h1><p>{view === "exam" ? "20 preguntes · 20 minuts · mínim 16 encerts. Preguntes originals d’entrenament, no oficials." : "Preguntes fictícies per provar el funcionament de l'aplicació."}</p></div>
+        <div className="page-intro"><div className="eyebrow dark">{view === "exam" ? "SIMULACRE DE DEMOSTRACIÓ" : "MODE D’APRENENTATGE"}</div><h1>{view === "exam" ? "És el teu moment." : "Practica i aprèn."}</h1><p>{view === "exam" ? "20 preguntes · 20 minuts · mínim 16 encerts. Preguntes originals d’entrenament, no oficials." : "Preguntes fictícies per provar el funcionament de l’aplicació."}</p></div>
         <Quiz mode={view} topicId={view === "practice" ? practiceTopic : undefined} onComplete={(result) => { setCompleted(v => v + 1); setResults(prev => [result, ...prev].slice(0, 20)); }} />
       </div>}
 
