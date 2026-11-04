@@ -5,16 +5,16 @@ import { CheckCircle2, XCircle, Clock3, RotateCcw, Trophy, ArrowRight } from "lu
 import { questionBank } from "@/data/question-bank";
 import { EXAM_CONFIG } from "@/lib/quiz";
 
-type Props = { mode: "practice" | "exam"; onComplete: () => void };
+type Props = { mode: "practice" | "exam"; onComplete: () => void; topicId?: number };
 type Status = "active" | "finished";
 
 function shuffled<T>(items: T[]) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
-export default function Quiz({ mode, onComplete }: Props) {
+export default function Quiz({ mode, onComplete, topicId }: Props) {
   const count = mode === "exam" ? EXAM_CONFIG.questionCount : 10;
-  const questions = useMemo(() => shuffled(questionBank).slice(0, Math.min(count, questionBank.length)), [count]);
+  const questions = useMemo(() => {\n    const pool = topicId ? questionBank.filter(q => q.topicId === topicId) : questionBank;\n    return shuffled(pool).slice(0, Math.min(count, pool.length));\n  }, [count, topicId]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [status, setStatus] = useState<Status>("active");
