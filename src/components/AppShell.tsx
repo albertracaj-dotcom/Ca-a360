@@ -7,7 +7,8 @@ import {
   X
 } from "lucide-react";
 import Quiz from "./Quiz";
-import { topics } from "@/data/topics";\nimport { officialMaterials } from "@/data/official-program";
+import { topics } from "@/data/topics";
+import { officialMaterials } from "@/data/official-program";
 import { lessonContent } from "@/data/lesson-content";
 
 type View = "home" | "topics" | "practice" | "exam" | "sources" | "progress";
