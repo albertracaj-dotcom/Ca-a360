@@ -10,3 +10,6 @@
 .lesson-checklist li{font-size:11px;color:#e0e8df;padding:9px 11px;background:#ffffff12;border-left:2px solid #c3a66c}
 .topic-detail .text-link{color:#e1e8df;margin-top:8px}
 .feature-card{text-decoration:none}
+
+.official-pdf-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.official-pdf-links a{font-size:10px;font-weight:700;color:#e8d7ad;text-decoration:underline;text-underline-offset:3px}
