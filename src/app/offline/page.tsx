@@ -6,7 +6,7 @@ export default function OfflinePage() {
       <section style={{maxWidth:460,textAlign:"center",background:"#fffefa",padding:36,border:"1px solid #e5e7df"}}>
         <div style={{fontSize:12,letterSpacing:3,fontWeight:700}}>CAÇA 360</div>
         <h1 style={{fontFamily:"Georgia,serif",fontSize:34,fontWeight:500}}>Ara mateix estàs sense connexió.</h1>
-        <p style={{lineHeight:1.7,color:"#788078"}}>Quan recuperis internet podràs tornar a entrar a l&apos;aplicació. En aquesta primera versió, el contingut d&apos;estudi encara necessita connexió.</p>
+        <p style={{lineHeight:1.7,color:"#788078"}}>Per carregar Caça 360 per primera vegada necessites connexió. Després, el shell i les preguntes pròpies poden quedar disponibles sense xarxa; els qüestionaris oficials i els enllaços externs sí que necessiten internet.</p>
         <Link href="/" style={{display:"inline-block",marginTop:12,padding:"13px 20px",background:"#c3a66c",color:"#183d30",textDecoration:"none",fontWeight:700}}>Torna a provar-ho</Link>
       </section>
     </main>
