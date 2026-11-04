@@ -74,3 +74,15 @@ supabase/
 - Guardar font, versió i data de revisió de cada pregunta.
 - Distingir preguntes oficials, pròpies i pendents de revisió.
 - No mostrar una norma com a vigent sense comprovar-ne la data d'efectes.
+
+
+## Instal·lació al mòbil (PWA)
+
+El projecte inclou manifest, icones, registre del service worker i una pàgina de reserva quan no hi ha connexió. Després de desplegar-lo en un domini amb **HTTPS**:
+
+- **Android (Chrome):** obre la web i prem «Instal·la l'app» quan aparegui.
+- **iPhone/iPad (Safari):** prem «Com instal·lar» i després Comparteix → «Afegir a la pantalla d'inici».
+
+Els navegadors exigeixen una acció explícita de l'usuari; una web no pot instal·lar-se silenciosament. El mode sense connexió d'aquesta primera versió només mostra una pàgina informativa: els tests i el temari encara necessiten connexió.
+
+Per publicar-la cal connectar el repositori a un servei de desplegament (per exemple, Vercel) i configurar el domini HTTPS. Encara no s'ha fet cap desplegament.
