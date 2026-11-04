@@ -7,7 +7,7 @@ export default function PrivacyPage() {
     <div className="page-intro"><div className="eyebrow dark">INFORMACIÓ LEGAL</div><h1>Privacitat.</h1><p>Informació sobre les dades que tracta aquesta versió de Caça 360.</p></div>
     <section className="legal-content">
       <h2>Quines dades es guarden?</h2>
-      <p>Aquesta versió no requereix registre i no envia dades personals a un servidor. El recompte de proves i l’historial de resultats s’emmagatzemen localment al navegador del dispositiu mitjançant localStorage.</p>
+      <p>Aquesta versió no requereix registre ni envia les respostes dels tests a cap servei propi. El recompte de proves i l’historial de resultats s’emmagatzemen localment al navegador del dispositiu mitjançant localStorage.</p>
       <h2>Com es poden esborrar?</h2>
       <p>Pots reiniciar el recompte des de la pantalla «El meu progrés» o esborrar les dades del lloc des de la configuració del navegador. Si desinstal·les l’aplicació o esborres les dades del navegador, pots perdre aquest historial.</p>
       <h2>Recursos i enllaços externs</h2>
