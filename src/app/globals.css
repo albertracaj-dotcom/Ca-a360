@@ -5,3 +5,8 @@
 .pwa-install{position:fixed;right:20px;bottom:20px;z-index:30;display:flex;align-items:center;gap:9px;border:1px solid #d6c394;border-radius:30px;background:#c3a66c;color:#183d30;padding:13px 18px;font-size:12px;font-weight:700;box-shadow:0 5px 22px #142e2433}
 .pwa-install:hover{filter:brightness(1.05);transform:translateY(-1px)}
 @media(max-width:600px){.pwa-install{right:12px;bottom:12px;padding:12px 15px}}
+
+.lesson-checklist{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:8px}
+.lesson-checklist li{font-size:11px;color:#e0e8df;padding:9px 11px;background:#ffffff12;border-left:2px solid #c3a66c}
+.topic-detail .text-link{color:#e1e8df;margin-top:8px}
+.feature-card{text-decoration:none}
