@@ -31,7 +31,7 @@ La informació oficial consultada indica 20 preguntes, 20 minuts i 16 encerts m�
 - Pàgina de fonts oficials i enllaços al BOE.
 - Pàgines inicials de privacitat i condicions d'ús.
 - PWA amb manifest, icones i cache bàsica del shell per recuperar la pàgina inicial després d'haver-la visitat.
-- GitHub Actions amb instal·lació de dependències, ESLint i compilació.
+- GitHub Actions amb Node.js 22, auditoria de dependències de producció, ESLint i compilació.
 
 ## Límits coneguts
 - Les 35 preguntes pròpies no són les 400 preguntes oficials. Els qüestionaris oficials s'obren des dels PDF de la Guàrdia Civil.
