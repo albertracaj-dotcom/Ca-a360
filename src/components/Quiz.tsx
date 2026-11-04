@@ -26,6 +26,7 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
   const [seconds, setSeconds] = useState(mode === "exam" ? EXAM_CONFIG.durationSeconds : 0);
   const [showExplanation, setShowExplanation] = useState(false);
   const completionSent = useRef(false);
+  const score = questions.reduce((sum, q, i) => sum + (answers[i] === q.correctIndex ? 1 : 0), 0);
 
   const finish = useCallback(() => {
     setStatus("finished");
@@ -49,7 +50,6 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
 
   const current = questions[index];
   const selected = answers[index];
-  const score = questions.reduce((sum, q, i) => sum + (answers[i] === q.correctIndex ? 1 : 0), 0);
   const time = `${String(Math.floor(seconds / 60)).padStart(2,"0")}:${String(seconds % 60).padStart(2,"0")}`;
 
   function choose(option: number) {
