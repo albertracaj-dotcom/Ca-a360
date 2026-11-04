@@ -49,3 +49,11 @@
 @media(max-width:600px){.footer-links{margin-left:0;width:100%}.legal-content{padding:20px}}
 
 .source-note{max-width:900px;margin:22px 0 8px;padding:14px 16px;background:#f0eee5;border-left:3px solid var(--gold);color:#6e634d;font-size:11px;line-height:1.7}
+
+.topic-progress{max-width:800px}
+.topic-progress-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 16px;background:var(--paper);border:1px solid var(--line);border-bottom:0}
+.topic-progress-row:last-child{border-bottom:1px solid var(--line)}
+.topic-progress-row div{display:flex;flex-direction:column;gap:4px}
+.topic-progress-row b{font-size:11px;color:var(--forest)}
+.topic-progress-row small{font-size:10px;color:var(--muted)}
+.topic-progress-row>span{font-family:'Playfair Display',serif;font-size:20px;color:var(--forest)}
