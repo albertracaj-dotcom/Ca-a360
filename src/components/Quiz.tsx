@@ -29,7 +29,10 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
   const count = mode === "exam" ? EXAM_CONFIG.questionCount : 10;
   const questions = useMemo(() => {
     const pool = topicId ? questionBank.filter(q => q.topicId === topicId) : questionBank;
-    return shuffled(pool).slice(0, Math.min(count, pool.length));
+    const randomized = shuffled(pool).map(shuffleOptions);
+    const shift = randomized.length ? attempt % randomized.length : 0;
+    const rotated = [...randomized.slice(shift), ...randomized.slice(0, shift)];
+    return rotated.slice(0, Math.min(count, pool.length));
   }, [count, topicId, attempt]);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
