@@ -13,12 +13,12 @@ function shuffled<T>(items: T[]) {
 }
 
 export default function Quiz({ mode, onComplete, topicId }: Props) {
+  const [attempt, setAttempt] = useState(0);
   const count = mode === "exam" ? EXAM_CONFIG.questionCount : 10;
   const questions = useMemo(() => {
     const pool = topicId ? questionBank.filter(q => q.topicId === topicId) : questionBank;
     return shuffled(pool).slice(0, Math.min(count, pool.length));
   }, [count, topicId, attempt]);
-  const [attempt, setAttempt] = useState(0);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [status, setStatus] = useState<Status>("active");
@@ -37,17 +37,14 @@ export default function Quiz({ mode, onComplete, topicId }: Props) {
   useEffect(() => {
     if (mode !== "exam" || status !== "active") return;
     const timer = window.setInterval(() => {
-      setSeconds(s => {
-        if (s <= 1) {
-          window.clearInterval(timer);
-          finish();
-          return 0;
-        }
-        return s - 1;
-      });
+      setSeconds(value => Math.max(0, value - 1));
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [mode, status, finish]);
+  }, [mode, status]);
+
+  useEffect(() => {
+    if (mode === "exam" && status === "active" && seconds === 0) finish();
+  }, [mode, status, seconds, finish]);
 
   const current = questions[index];
   const selected = answers[index];
