@@ -41,8 +41,11 @@ La informació oficial consultada indica 20 preguntes, 20 minuts i 16 encerts m�
 - No hi ha desplegament HTTPS, per tant encara no es pot instal·lar i provar com a PWA en dispositius reals.
 - Les pàgines de privacitat i condicions són esborranys i necessiten revisió jurídica abans d'una publicació comercial.
 
+## Validació tècnica
+GitHub Actions ha completat correctament l’auditoria de dependències de producció, ESLint i la compilació Next.js al commit 7740bfc0cd5be223e5e4070ac82fd971ea53a16e.
+
 ## Següents fites abans de dir que està llesta
-1. Aconseguir una execució verda de lint i build a GitHub Actions.
+1. [x] Execució verda de l’auditoria de dependències, ESLint i build a GitHub Actions.
 2. Completar la revisió jurídica i editorial dels resums i les 35 preguntes.
 3. Afegir més preguntes pròpies verificades o una importació controlada del material oficial publicat.
 4. Fer proves funcionals completes en mòbil i ordinador.
